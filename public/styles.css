@@ -1420,44 +1420,6 @@ section {
     font-size: 0.6rem;
   }
 
-  /* Ticker */
-  .ticker-item {
-    padding: 0 16px;
-    font-size: 0.72rem;
-  }
-
-  /* Hero bottom — stack vertically */
-  .hero-bottom {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .hero-chart {
-    min-width: 0;
-    width: 100%;
-  }
-
-  /* Market Pulse — 2 columns on mobile */
-  .market-pulse {
-    padding: 56px 0;
-  }
-
-  .market-pulse-header {
-    margin-bottom: 32px;
-  }
-
-  .pulse-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .pulse-card {
-    padding: 16px;
-  }
-
-  .pulse-price {
-    font-size: 1.15rem;
-  }
 
 
   .stats-inner {
