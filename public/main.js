@@ -59,16 +59,11 @@ function closeMobileNav() {
 (function initMobileNav() {
     const toggle = document.getElementById('navToggle');
     const mobile = document.getElementById('navMobile');
-    const closeBtn = document.getElementById('navMobileClose');
-
     if (toggle && mobile) {
         toggle.addEventListener('click', () => {
             mobile.classList.add('open');
             document.body.style.overflow = 'hidden';
         });
-    }
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeMobileNav);
     }
     // Close on backdrop click (clicking outside the links)
     if (mobile) {
