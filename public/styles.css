@@ -892,6 +892,12 @@ section {
   border-color: var(--gold);
 }
 
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .faq-answer-inner {
   padding: 0 32px 24px;
   font-size: 0.95rem;
@@ -900,7 +906,7 @@ section {
 }
 
 .faq-item.open .faq-answer {
-  max-height: 300px;
+  max-height: 500px;
 }
 
 /* ── Newsletter ── */
