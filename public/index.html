@@ -68,13 +68,7 @@
     <button type="button" class="btn btn-primary" onclick="closeMobileNav(); openModal()">Secure Your Spot</button>
   </div>
 
-  <!-- Stock Ticker Strip -->
-  <div class="ticker-strip" aria-label="Live market ticker" aria-hidden="true">
-    <div class="ticker-track" id="tickerTrack">
-      <div class="ticker-items" id="tickerItems"></div>
-      <div class="ticker-items" id="tickerItemsClone" aria-hidden="true"></div>
-    </div>
-  </div>
+
 
 
   <!-- ═══════════════════════════════════════════
@@ -143,25 +137,8 @@
             </div>
           </div>
 
-          <!-- Animated Candlestick Chart -->
-          <div class="hero-chart">
-            <div class="hero-chart-label">Live Market Simulation</div>
-            <svg class="candle-chart" id="candleChart" viewBox="0 0 320 120" preserveAspectRatio="none"
-              aria-hidden="true">
-              <!-- Grid lines -->
-              <line x1="0" y1="30" x2="320" y2="30" stroke="rgba(212,168,67,0.08)" stroke-width="1" />
-              <line x1="0" y1="60" x2="320" y2="60" stroke="rgba(212,168,67,0.08)" stroke-width="1" />
-              <line x1="0" y1="90" x2="320" y2="90" stroke="rgba(212,168,67,0.08)" stroke-width="1" />
-              <!-- Candles rendered by JS -->
-              <g id="candleGroup"></g>
-              <!-- Price line -->
-              <polyline id="priceLine" fill="none" stroke="#d4a843" stroke-width="1.5" stroke-linejoin="round"
-                opacity="0.6" />
-            </svg>
-          </div>
         </div>
       </div>
-    </div>
   </section>
 
 
@@ -192,22 +169,7 @@
   </div>
 
 
-  <!-- ═══════════════════════════════════════════
-     MARKET PULSE
-═══════════════════════════════════════════ -->
-  <section class="market-pulse" id="market-pulse">
-    <div class="container">
-      <div class="market-pulse-header">
-        <div class="section-label">Market Pulse</div>
-        <h2 class="section-title">What Moves the<br><span class="gold">Market Today</span></h2>
-        <p class="section-sub">Simulated market data to show you the kind of opportunities we analyse in the
-          masterclass.</p>
-      </div>
-      <div class="pulse-grid" id="pulseGrid">
-        <!-- Populated by JS -->
-      </div>
-    </div>
-  </section>
+
 
 
   <!-- ═══════════════════════════════════════════
