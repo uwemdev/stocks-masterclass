@@ -1183,7 +1183,7 @@ section {
 
   /* Hero */
   .hero {
-    padding-top: 80px;
+    padding-top: 120px;
     padding-bottom: 48px;
     min-height: auto;
     align-items: flex-start;
@@ -1194,6 +1194,8 @@ section {
   }
 
   .hero-badge {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
     font-size: 0.72rem;
     padding: 6px 14px;
   }
