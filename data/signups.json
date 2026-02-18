@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Test User",
+    "email": "test@example.com",
+    "phone": "0501234567",
+    "registeredAt": "2026-02-18T17:23:19.312Z",
+    "paymentStatus": "pending"
+  }
+]
