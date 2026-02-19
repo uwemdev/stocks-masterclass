@@ -95,7 +95,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  font-size: clamp(2.2rem, 3.8vw, 2.8rem);
 }
 
 h3 {
@@ -114,17 +114,25 @@ p {
 
 /* ── Section Labels ── */
 .section-label {
-  display: inline-block;
-  font-size: 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.75rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--blue);
-  background: var(--blue-light);
-  border: 1px solid var(--blue-border);
-  padding: 7px 18px;
-  border-radius: 100px;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--blue);
+  flex-shrink: 0;
 }
 
 .section-title {
