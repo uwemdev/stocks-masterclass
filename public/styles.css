@@ -1823,13 +1823,14 @@ section {
 
   .about-visual {
     align-items: center;
-    order: -1;
-    /* photo always on top on mobile */
+    order: 2;
+    /* photo below text on mobile */
   }
 
   .about-text {
     text-align: center;
     order: 1;
+    /* text first on mobile */
   }
 
   .about-text p {
