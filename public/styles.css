@@ -511,14 +511,28 @@ section {
 }
 
 .hero-left .countdown {
-  gap: 16px;
+  gap: 12px;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(147, 197, 253, 0.08);
+  border: 1px solid rgba(147, 197, 253, 0.2);
+  border-radius: 8px;
+  min-width: 72px;
+  padding: 10px 0;
+  backdrop-filter: blur(4px);
 }
 
 .hero-left .countdown-num {
-  font-size: 2.4rem;
-  font-weight: 300;
+  font-size: 1.8rem;
+  font-weight: 700;
   color: #ffffff;
   line-height: 1;
+  margin-bottom: 2px;
 }
 
 .hero-left .countdown-sep {
@@ -526,12 +540,14 @@ section {
   font-weight: 200;
   color: rgba(147, 197, 253, 0.60);
   margin-bottom: 14px;
+  display: none;
+  /* Hide separators for boxed look */
 }
 
 .hero-left .countdown-unit>span {
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #93c5fd;
 }
@@ -1734,9 +1750,22 @@ section {
     border-radius: 20px;
   }
 
-  /* Hide floating cards on mobile — too cramped */
+  /* Show floating cards on mobile, scaled down */
   .hero-float {
-    display: none;
+    display: flex;
+    transform: scale(0.85);
+    z-index: 20;
+    padding: 8px 14px;
+  }
+
+  .hero-float--rating {
+    top: 10px;
+    right: -10px;
+  }
+
+  .hero-float--students {
+    bottom: 30px;
+    left: -10px;
   }
 
   .hero h1 {
@@ -1771,29 +1800,30 @@ section {
   .countdown-wrapper {
     width: 100%;
     padding: 14px 16px;
+    align-items: center;
+    margin-top: 10px;
   }
 
   .countdown {
-    gap: 6px;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10px;
   }
 
   .countdown-unit {
-    min-width: 0;
-    flex: 1;
+    min-width: 64px;
+    padding: 8px 0;
   }
 
-  .countdown-num {
+  .hero-left .countdown-num {
     font-size: 1.5rem;
-  }
-
-  .countdown-sep {
-    font-size: 1.3rem;
-    margin-bottom: 8px;
   }
 
   .countdown-unit span {
     font-size: 0.58rem;
+  }
+
+  .countdown-sep {
+    display: none;
   }
 
   /* Stats */
@@ -1834,29 +1864,33 @@ section {
   /* About */
   .about-inner {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 12px;
     text-align: center;
   }
 
   .about-visual {
     align-items: center;
     order: 2;
-    /* photo below text on mobile */
+    margin-bottom: 24px;
+    margin-top: 12px;
   }
 
+  /* Split about text for mobile ordering */
   .about-text {
-    text-align: center;
+    display: contents;
+  }
+
+  .about-text .section-label,
+  .about-text h2,
+  .about-text h3 {
     order: 1;
-    /* text first on mobile */
+    text-align: center;
   }
 
-  .about-text p {
+  .about-text p,
+  .about-text .about-tags {
+    order: 3;
     text-align: left;
-  }
-
-  .about-tags {
-    justify-content: center;
-    gap: 8px;
   }
 
   /* Registration */
