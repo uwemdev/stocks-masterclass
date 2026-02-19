@@ -95,7 +95,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-size: clamp(2rem, 3.8vw, 2.8rem);
 }
 
 h3 {
@@ -115,16 +115,16 @@ p {
 /* ── Section Labels ── */
 .section-label {
   display: inline-block;
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--blue);
   background: var(--blue-light);
   border: 1px solid var(--blue-border);
-  padding: 5px 14px;
+  padding: 7px 18px;
   border-radius: 100px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 .section-title {
