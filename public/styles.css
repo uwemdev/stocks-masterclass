@@ -859,8 +859,8 @@ section {
 
 .about-img-wrap {
   position: relative;
-  width: 280px;
-  height: 280px;
+  width: 360px;
+  height: 360px;
   flex-shrink: 0;
 }
 
@@ -875,8 +875,8 @@ section {
 }
 
 .about-photo {
-  width: 280px;
-  height: 280px;
+  width: 360px;
+  height: 360px;
   border-radius: 50%;
   object-fit: cover;
   object-position: top center;
@@ -1752,10 +1752,13 @@ section {
 
   .about-visual {
     align-items: center;
+    order: -1;
+    /* photo always on top on mobile */
   }
 
   .about-text {
     text-align: center;
+    order: 1;
   }
 
   .about-text p {
