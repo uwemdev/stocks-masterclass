@@ -161,6 +161,11 @@ section {
   background: rgba(255, 255, 255, 0.1);
 }
 
+/* ── Section scroll offset (fixes anchor links landing behind fixed nav) ── */
+section {
+  scroll-margin-top: 80px;
+}
+
 /* ── Navigation ── */
 .nav {
   position: fixed;
@@ -262,13 +267,13 @@ section {
 /* ── Hero ── */
 .hero {
   position: relative;
-  height: 100vh;
-  min-height: 700px;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   text-align: center;
-  padding: 0;
+  padding-top: 140px;
+  padding-bottom: 80px;
   overflow: hidden;
 }
 
@@ -294,7 +299,7 @@ section {
   z-index: 2;
   max-width: 900px;
   width: 100%;
-  padding: 80px 24px 0;
+  padding: 0 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
