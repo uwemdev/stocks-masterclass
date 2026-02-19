@@ -353,14 +353,16 @@ section {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(29, 78, 216, 0.22) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 50% at 75% 80%, rgba(30, 64, 175, 0.18) 0%, transparent 60%),
-    linear-gradient(125deg,
-      #060e26 0%,
-      #0d1e4f 28%,
-      #0f2b6e 52%,
-      #11337a 72%,
-      #0d1e4f 100%);
+    radial-gradient(ellipse 75% 55% at 5% 55%, rgba(37, 99, 235, 0.32) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 65% at 80% 90%, rgba(109, 40, 217, 0.20) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 35% at 50% 0%, rgba(59, 130, 246, 0.14) 0%, transparent 55%),
+    linear-gradient(150deg,
+      #030813 0%,
+      #060f28 18%,
+      #0c1c47 38%,
+      #0e2255 55%,
+      #0a1838 75%,
+      #040a1e 100%);
 }
 
 /* ── 2-column split ── */
@@ -369,8 +371,8 @@ section {
   z-index: 2;
   width: 100%;
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 48px;
+  grid-template-columns: 1.55fr 0.45fr;
+  gap: 40px;
   align-items: flex-end;
   min-height: calc(100vh - 88px);
   padding: 56px 0 0;
@@ -487,22 +489,38 @@ section {
 }
 
 .hero-left .countdown-label {
-  color: rgba(255, 255, 255, 0.42);
-  font-size: 0.68rem;
-  margin-bottom: 0.6rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
 }
 
 .hero-left .countdown {
-  gap: 18px;
+  gap: 16px;
 }
 
 .hero-left .countdown-num {
-  font-size: 2rem;
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #ffffff;
+  line-height: 1;
 }
 
 .hero-left .countdown-sep {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  font-weight: 200;
+  color: rgba(147, 197, 253, 0.60);
   margin-bottom: 14px;
+}
+
+.hero-left .countdown-unit>span {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #93c5fd;
 }
 
 /* ── Right side: photo ── */
@@ -594,23 +612,9 @@ section {
   white-space: nowrap;
 }
 
-/* ── Floating Market Widget ── */
+/* ── Floating Market Widget (hidden) ── */
 .floating-market-widget {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 500;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  padding: 8px 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  cursor: default;
+  display: none !important;
 }
 
 .market-indicator {
