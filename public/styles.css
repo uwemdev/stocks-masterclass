@@ -352,10 +352,15 @@ section {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg,
-      rgba(8, 20, 51, 0.90) 0%,
-      rgba(13, 27, 62, 0.72) 45%,
-      rgba(13, 27, 62, 0.50) 100%);
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(29, 78, 216, 0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 75% 80%, rgba(30, 64, 175, 0.18) 0%, transparent 60%),
+    linear-gradient(125deg,
+      #060e26 0%,
+      #0d1e4f 28%,
+      #0f2b6e 52%,
+      #11337a 72%,
+      #0d1e4f 100%);
 }
 
 /* ── 2-column split ── */
@@ -364,8 +369,8 @@ section {
   z-index: 2;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
   align-items: flex-end;
   min-height: calc(100vh - 88px);
   padding: 56px 0 0;
@@ -520,8 +525,9 @@ section {
   border-radius: 20px 20px 0 0;
   object-fit: cover;
   object-position: top center;
+  height: 520px;
   max-height: 560px;
-  filter: brightness(1.04) contrast(1.02);
+  filter: brightness(1.05) contrast(1.02) saturate(0.98);
 }
 
 /* ── Floating stat cards ── */
