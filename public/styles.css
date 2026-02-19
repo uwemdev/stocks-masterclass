@@ -291,15 +291,20 @@ section {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 28px;
   list-style: none;
 }
 
 .nav-links a {
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   transition: color var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--blue);
 }
 
 .nav-cta {
