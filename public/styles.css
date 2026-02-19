@@ -1692,7 +1692,7 @@ section {
 
   /* Learn */
   .learn-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     background: var(--border);
     gap: 1px;
   }
