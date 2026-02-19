@@ -1714,11 +1714,28 @@ section {
   }
 
   .hero-left {
-    padding-bottom: 32px;
+    padding-bottom: 16px;
   }
 
-  /* Hide photo col on mobile — keep it fast */
   .hero-right {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 48px;
+  }
+
+  .hero-photo-wrap {
+    max-width: 300px;
+    margin: 0 auto;
+    border-radius: 20px;
+  }
+
+  .hero-photo {
+    height: 340px;
+    border-radius: 20px;
+  }
+
+  /* Hide floating cards on mobile — too cramped */
+  .hero-float {
     display: none;
   }
 
