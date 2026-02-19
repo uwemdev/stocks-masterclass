@@ -371,11 +371,11 @@ section {
   z-index: 2;
   width: 100%;
   display: grid;
-  grid-template-columns: 1.55fr 0.45fr;
-  gap: 40px;
-  align-items: flex-end;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  align-items: center;
   min-height: calc(100vh - 88px);
-  padding: 56px 0 0;
+  padding: 56px 0;
 }
 
 /* ── Left side ── */
@@ -526,26 +526,40 @@ section {
 /* ── Right side: photo ── */
 .hero-right {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  align-self: flex-end;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-photo-wrap {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 380px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+}
+
+/* Light gray card background behind portrait PNG */
+.hero-photo-wrap::before {
+  content: '';
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: #c8d8e8;
+  border-radius: 24px;
+  z-index: 0;
 }
 
 .hero-photo {
+  position: relative;
+  z-index: 1;
   width: 100%;
   display: block;
-  border-radius: 20px 20px 0 0;
+  height: 460px;
   object-fit: cover;
   object-position: top center;
-  height: 520px;
-  max-height: 560px;
-  filter: brightness(1.05) contrast(1.02) saturate(0.98);
+  border-radius: 24px;
+  filter: brightness(1.04) contrast(1.02);
 }
 
 /* ── Floating stat cards ── */
@@ -554,22 +568,23 @@ section {
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(16px);
   border-radius: 14px;
-  padding: 12px 18px;
+  padding: 11px 16px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   box-shadow: 0 8px 32px rgba(13, 27, 62, 0.22);
+  z-index: 10;
 }
 
 .hero-float--rating {
-  top: 28px;
-  right: -24px;
+  top: 16px;
+  right: -20px;
   animation: float-bob 4s ease-in-out infinite;
 }
 
 .hero-float--students {
-  bottom: 60px;
-  left: -28px;
+  bottom: 20px;
+  left: -20px;
   animation: float-bob 4s ease-in-out infinite 2s;
 }
 
