@@ -38,6 +38,33 @@
         const ogDesc = document.querySelector('meta[property="og:description"]');
         if (ogDesc && content.og_description) ogDesc.setAttribute('content', content.og_description);
 
+        // ── THEME / COLORS ───────────────────────────────────────────────────
+        if (content.primary_color || content.secondary_color) {
+            const styleId = 'admin-theme-overrides';
+            let styleEl = document.getElementById(styleId);
+            if (!styleEl) {
+                styleEl = document.createElement('style');
+                styleEl.id = styleId;
+                document.head.appendChild(styleEl);
+            }
+
+            let cssVars = ':root {\n';
+            if (content.primary_color) {
+                cssVars += `  --blue: ${content.primary_color};\n`;
+                cssVars += `  --blue-mid: ${content.primary_color};\n`;
+                // Add a slightly dimmed version for borders/backgrounds using basic string concat
+                cssVars += `  --blue-dim: ${content.primary_color}1a;\n`; // 10% opacity hex
+                cssVars += `  --blue-border: ${content.primary_color}2e;\n`; // 18% opacity hex
+                cssVars += `  --gold: ${content.primary_color};\n`; // Catch legacy values
+            }
+            if (content.secondary_color) {
+                cssVars += `  --bg-hero: ${content.secondary_color};\n`;
+                cssVars += `  --navy: ${content.secondary_color};\n`;
+            }
+            cssVars += '}\n';
+            styleEl.innerHTML = cssVars;
+        }
+
         // ── Hero badge ────────────────────────────────────────────────────────
         const heroBadge = document.querySelector('.hero-badge');
         if (heroBadge && content.hero_badge) {

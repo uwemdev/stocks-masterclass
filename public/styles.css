@@ -564,7 +564,6 @@ section {
   width: 100%;
   max-width: 380px;
   border-radius: 24px;
-  overflow: hidden;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
 }
 
@@ -1750,22 +1749,40 @@ section {
     border-radius: 20px;
   }
 
-  /* Show floating cards on mobile, scaled down */
+  /* Show floating cards on mobile, scaled to fit */
   .hero-float {
     display: flex;
-    transform: scale(0.85);
     z-index: 20;
-    padding: 8px 14px;
+    padding: 8px 10px;
+    white-space: nowrap;
+    background: #ffffff;
+    border: 1px solid rgba(29, 78, 216, 0.10);
+    box-shadow: 0 8px 28px rgba(30, 64, 175, 0.14), 0 2px 8px rgba(0, 0, 0, 0.08);
   }
 
   .hero-float--rating {
     top: 10px;
     right: -10px;
+    /* Kept tight to avoid horizontal overflow on small screens */
   }
 
   .hero-float--students {
     bottom: 30px;
     left: -10px;
+  }
+
+  .hero-float-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 0.85rem;
+  }
+
+  .hero-float-num {
+    font-size: 0.95rem;
+  }
+
+  .hero-float-label {
+    font-size: 0.6rem;
   }
 
   .hero h1 {

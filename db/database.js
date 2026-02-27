@@ -47,6 +47,10 @@ const defaultSettings = [
   { key: 'nav_logo_text', value: 'StocksClass', label: 'Logo Text', section: 'nav', type: 'text' },
   { key: 'nav_cta_label', value: 'Register Now', label: 'Nav Button Label', section: 'nav', type: 'text' },
 
+  // ── Theme / Colors ──
+  { key: 'primary_color', value: '#1d4ed8', label: 'Primary Color (Buttons, Highlights)', section: 'theme', type: 'color' },
+  { key: 'secondary_color', value: '#0d1b3e', label: 'Secondary Color (Hero Background, Dark Elements)', section: 'theme', type: 'color' },
+
   // ── Hero ──
   { key: 'hero_image', value: 'images/instructor.png', label: 'Hero Image', section: 'hero', type: 'image' },
   { key: 'hero_badge', value: 'Next Masterclass: 4th March 2026 · 10:00 AM GMT', label: 'Hero Badge Text', section: 'hero', type: 'text' },
