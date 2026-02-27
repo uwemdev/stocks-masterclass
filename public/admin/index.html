@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login — Stocks Masterclass</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body class="login-body">
+
+    <div class="login-bg">
+        <div class="login-glow login-glow--1"></div>
+        <div class="login-glow login-glow--2"></div>
+    </div>
+
+    <div class="login-wrap">
+        <div class="login-card glass">
+
+            <!-- Logo -->
+            <div class="login-logo">
+                <div class="login-logo-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0a0f1e" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                        <polyline points="16 7 22 7 22 13"></polyline>
+                    </svg>
+                </div>
+                <span class="login-logo-text">Stocks<span>Class</span> <em>Admin</em></span>
+            </div>
+
+            <h1 class="login-heading">Welcome back</h1>
+            <p class="login-sub">Sign in to manage your website content.</p>
+
+            <form id="loginForm" class="login-form" novalidate>
+                <div class="field-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="admin" autocomplete="username"
+                        required />
+                </div>
+                <div class="field-group">
+                    <label for="password">Password</label>
+                    <div class="pw-wrap">
+                        <input type="password" id="password" name="password" placeholder="••••••••"
+                            autocomplete="current-password" required />
+                        <button type="button" class="pw-toggle" id="pwToggle" aria-label="Show password">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="login-error" id="loginError" hidden></div>
+
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <span id="loginBtnText">Sign In</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+
+            <p class="login-hint">Default: <code>admin</code> / <code>admin123</code></p>
+        </div>
+    </div>
+
+    <script>
+        // Redirect if already logged in
+        if (localStorage.getItem('admin_token')) {
+            window.location.href = 'dashboard.html';
+        }
+
+        const form = document.getElementById('loginForm');
+        const errorEl = document.getElementById('loginError');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginBtnText = document.getElementById('loginBtnText');
+        const pwToggle = document.getElementById('pwToggle');
+        const pwInput = document.getElementById('password');
+
+        pwToggle.addEventListener('click', () => {
+            pwInput.type = pwInput.type === 'password' ? 'text' : 'password';
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            errorEl.hidden = true;
+            loginBtn.disabled = true;
+            loginBtnText.textContent = 'Signing in…';
+
+            const username = document.getElementById('username').value.trim();
+            const password = pwInput.value;
+
+            try {
+                const res = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    localStorage.setItem('admin_token', data.token);
+                    localStorage.setItem('admin_user', data.username);
+                    window.location.href = 'dashboard.html';
+                } else {
+                    errorEl.textContent = data.message || 'Login failed.';
+                    errorEl.hidden = false;
+                    loginBtn.disabled = false;
+                    loginBtnText.textContent = 'Sign In';
+                }
+            } catch (err) {
+                errorEl.textContent = 'Server error. Is the server running?';
+                errorEl.hidden = false;
+                loginBtn.disabled = false;
+                loginBtnText.textContent = 'Sign In';
+            }
+        });
+    </script>
+</body>
+
+</html>

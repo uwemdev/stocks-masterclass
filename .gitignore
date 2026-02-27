@@ -1,0 +1,3 @@
+node_modules/
+db/site.db*
+public/uploads/

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — Stocks Masterclass Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body class="dash-body">
+
+    <!-- ═══ SIDEBAR ══════════════════════════════════════════ -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0a0f1e" stroke-width="2.5"
+                    stroke-linecap="round">
+                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                    <polyline points="16 7 22 7 22 13"></polyline>
+                </svg>
+            </div>
+            <span class="sidebar-logo-text">Stocks<span>Class</span></span>
+            <span class="sidebar-badge">Admin</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <span class="nav-section-label">Overview</span>
+            <button class="sidebar-link active" data-panel="overview">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                Overview
+            </button>
+
+            <span class="nav-section-label">Content</span>
+            <button class="sidebar-link" data-panel="hero">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                    <polyline points="16 7 22 7 22 13"></polyline>
+                </svg>
+                Hero Section
+            </button>
+            <button class="sidebar-link" data-panel="event">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Event Details
+            </button>
+            <button class="sidebar-link" data-panel="stats">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                Stats Bar
+            </button>
+            <button class="sidebar-link" data-panel="curriculum">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+                Curriculum
+            </button>
+            <button class="sidebar-link" data-panel="about">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                About Instructor
+            </button>
+            <button class="sidebar-link" data-panel="newsletter">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+                Newsletter
+            </button>
+            <button class="sidebar-link" data-panel="nav">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+                Nav &amp; Footer
+            </button>
+            <button class="sidebar-link" data-panel="socials">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                Socials &amp; Links
+            </button>
+            <button class="sidebar-link" data-panel="seo">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                SEO / Meta
+            </button>
+
+            <span class="nav-section-label">Registrations</span>
+            <button class="sidebar-link" data-panel="signups">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Sign-ups
+            </button>
+            <button class="sidebar-link" data-panel="subscribers">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                Newsletter List
+            </button>
+
+            <span class="nav-section-label">Account</span>
+            <button class="sidebar-link" data-panel="password">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Change Password
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-user">
+                <div class="sidebar-avatar" id="sidebarAvatar">A</div>
+                <div>
+                    <div class="sidebar-username" id="sidebarUsername">Admin</div>
+                    <div class="sidebar-role">Site Administrator</div>
+                </div>
+            </div>
+            <button class="btn-logout" id="logoutBtn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                Sign Out
+            </button>
+        </div>
+    </aside>
+
+    <!-- ═══ MAIN ═══════════════════════════════════════════ -->
+    <div class="dash-main">
+
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <div>
+                    <div class="topbar-title" id="topbarTitle">Overview</div>
+                    <div class="topbar-subtitle" id="topbarSubtitle">Manage your website content</div>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <a href="/" target="_blank" class="btn-preview">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                    View Site
+                </a>
+                <button class="btn-save" id="saveAllBtn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                    Save All Changes
+                </button>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="content-area">
+
+            <!-- ── OVERVIEW ─────────────────────────────────── -->
+            <div class="section-panel active" id="panel-overview">
+                <div class="panel-header">
+                    <div class="panel-title">Dashboard Overview</div>
+                    <div class="panel-desc">Welcome to the Stocks Masterclass content admin panel.</div>
+                </div>
+                <div class="overview-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--gold">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="stat-num" id="ov-signups">—</div>
+                            <div class="stat-lbl">Sign-ups</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--blue">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="stat-num" id="ov-subs">—</div>
+                            <div class="stat-lbl">Subscribers</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon stat-icon--green">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                                <polyline points="16 7 22 7 22 13"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="stat-num" id="ov-settings">—</div>
+                            <div class="stat-lbl">Settings</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Quick Info</div>
+                    <p style="color:var(--text-muted);font-size:0.88rem;line-height:1.7;">
+                        Use the sidebar to navigate between sections. Click <strong style="color:var(--text)">Save All
+                            Changes</strong> in the top bar to push all edits live. Changes are reflected on the website
+                        immediately after saving — no deployment needed.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ── HERO ───────────────────────────────────────── -->
+            <div class="section-panel" id="panel-hero">
+                <div class="panel-header">
+                    <div class="panel-title">Hero Section</div>
+                    <div class="panel-desc">The main above-the-fold section visitors see first.</div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Media</div>
+                    <div class="fields-grid">
+                        <div class="admin-field field-full">
+                            <label class="admin-label">Hero Image</label>
+                            <div class="image-upload-wrap">
+                                <img id="preview_hero_image" class="img-preview" src="" alt="Hero Image Preview" />
+                                <input type="file" class="admin-input" data-key="hero_image" accept="image/*" />
+                            </div>
+                            <span class="admin-hint">Recommended size: 800x800px or larger.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Badge &amp; Headline</div>
+                    <div class="fields-grid">
+                        <div class="admin-field field-full">
+                            <label class="admin-label">Hero Badge Text</label>
+                            <input type="text" class="admin-input" data-key="hero_badge" />
+                        </div>
+                        <div class="admin-field field-full">
+                            <label class="admin-label">Hero Title (HTML allowed)</label>
+                            <input type="text" class="admin-input" data-key="hero_title" />
+                            <span class="admin-hint">Use <code>&lt;span class="hero-accent"&gt;text&lt;/span&gt;</code>
+                                for the gold accent.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Bullet Points</div>
+                    <div class="fields-grid">
+                        <div class="admin-field field-full"><label class="admin-label">Bullet 1</label><input
+                                type="text" class="admin-input" data-key="hero_bullet_1" /></div>
+                        <div class="admin-field field-full"><label class="admin-label">Bullet 2</label><input
+                                type="text" class="admin-input" data-key="hero_bullet_2" /></div>
+                        <div class="admin-field field-full"><label class="admin-label">Bullet 3</label><input
+                                type="text" class="admin-input" data-key="hero_bullet_3" /></div>
+                        <div class="admin-field field-full"><label class="admin-label">Bullet 4</label><input
+                                type="text" class="admin-input" data-key="hero_bullet_4" /></div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Buttons &amp; Countdown</div>
+                    <div class="fields-grid">
+                        <div class="admin-field">
+                            <label class="admin-label">Register Button Label</label>
+                            <input type="text" class="admin-input" data-key="hero_register_label" />
+                        </div>
+                        <div class="admin-field">
+                            <label class="admin-label">Register Button Price</label>
+                            <input type="text" class="admin-input" data-key="hero_register_price" />
+                        </div>
+                        <div class="admin-field">
+                            <label class="admin-label">"See Course" Button Label</label>
+                            <input type="text" class="admin-input" data-key="hero_learn_label" />
+                        </div>
+                        <div class="admin-field">
+                            <label class="admin-label">Countdown Label</label>
+                            <input type="text" class="admin-input" data-key="countdown_label" />
+                        </div>
+                        <div class="admin-field field-full">
+                            <label class="admin-label">Countdown Target Date (ISO 8601 UTC)</label>
+                            <input type="text" class="admin-input" data-key="countdown_date"
+                                placeholder="2026-03-04T10:00:00Z" />
+                            <span class="admin-hint">Format: YYYY-MM-DDTHH:MM:SSZ — this also drives the hero badge
+                                date.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Floating Cards</div>
+                    <div class="fields-grid">
+                        <div class="admin-field">
+                            <label class="admin-label">Instructor Rating</label>
+                            <input type="text" class="admin-input" data-key="hero_rating" />
+                        </div>
+                        <div class="admin-field">
+                            <label class="admin-label">Students Trained (hero card)</label>
+                            <input type="text" class="admin-input" data-key="hero_students" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── EVENT DETAILS ──────────────────────────────── -->
+            <div class="section-panel" id="panel-event">
+                <div class="panel-header">
+                    <div class="panel-title">Event Details</div>
+                    <div class="panel-desc">Date, time, format, pricing, and contact info.</div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Schedule</div>
+                    <div class="fields-grid">
+                        <div class="admin-field"><label class="admin-label">Event Date</label><input type="text"
+                                class="admin-input" data-key="event_date" placeholder="4th March 2026" /></div>
+                        <div class="admin-field"><label class="admin-label">Event Time</label><input type="text"
+                                class="admin-input" data-key="event_time" placeholder="10:00 AM GMT" /></div>
+                        <div class="admin-field"><label class="admin-label">Format</label><input type="text"
+                                class="admin-input" data-key="event_format" /></div>
+                        <div class="admin-field"><label class="admin-label">Seats Description</label><input type="text"
+                                class="admin-input" data-key="event_seats" /></div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Pricing</div>
+                    <div class="fields-grid">
+                        <div class="admin-field"><label class="admin-label">Price</label><input type="text"
+                                class="admin-input" data-key="event_price" /></div>
+                        <div class="admin-field"><label class="admin-label">Price Note</label><input type="text"
+                                class="admin-input" data-key="event_price_note" /></div>
+                        <div class="admin-field"><label class="admin-label">Payment Methods</label><input type="text"
+                                class="admin-input" data-key="event_payment" /></div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Contact &amp; Links</div>
+                    <div class="fields-grid">
+                        <div class="admin-field"><label class="admin-label">WhatsApp Number (display)</label><input
+                                type="text" class="admin-input" data-key="event_whatsapp" /></div>
+                        <div class="admin-field"><label class="admin-label">WhatsApp Link (href)</label><input
+                                type="url" class="admin-input" data-key="event_whatsapp_link" /></div>
+                        <div class="admin-field field-full"><label class="admin-label">Zoom Link (sent after
+                                payment)</label><input type="url" class="admin-input" data-key="event_zoom_link"
+                                placeholder="https://zoom.us/j/..." /></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── STATS ──────────────────────────────────────── -->
+            <div class="section-panel" id="panel-stats">
+                <div class="panel-header">
+                    <div class="panel-title">Stats Bar</div>
+                    <div class="panel-desc">The four metric cards displayed below the hero.</div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Numbers</div>
+                    <div class="fields-grid">
+                        <div class="admin-field"><label class="admin-label">Students Trained</label><input type="text"
+                                class="admin-input" data-key="stat_students" /></div>
+                        <div class="admin-field"><label class="admin-label">Years Market Experience</label><input
+                                type="text" class="admin-input" data-key="stat_experience" /></div>
+                        <div class="admin-field"><label class="admin-label">Core Modules</label><input type="text"
+                                class="admin-input" data-key="stat_modules" /></div>
+                        <div class="admin-field"><label class="admin-label">Duration</label><input type="text"
+                                class="admin-input" data-key="stat_duration" /></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── CURRICULUM ──────────────────────────────────── -->
+            <div class="section-panel" id="panel-curriculum">
+                <div class="panel-header">
+                    <div class="panel-title">Curriculum Section</div>
+                    <div class="panel-desc">The "What You Will Learn" section header.</div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Section Header</div>
+                    <div class="fields-grid">
+                        <div class="admin-field"><label class="admin-label">Section Label</label><input type="text"
+                                class="admin-input" data-key="curriculum_section_label" /></div>
+                        <div class="admin-field"><label class="admin-label">Section Title</label><input type="text"
+                                class="admin-input" data-key="curriculum_title" /></div>
+                        <div class="admin-field field-full">
+                            <label class="admin-label">Section Subtitle</label>
+                            <textarea class="admin-textarea" data-key="curriculum_sub" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── ABOUT ──────────────────────────────────────── -->
+            <div class="section-panel" id="panel-about">
+                <div class="panel-header">
+                    <div class="panel-title">About Instructor</div>
+                    <div class="panel-desc">Instructor profile, bio, and floating stats cards.</div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Media &amp; Profile</div>
+                    <div class="fields-grid">
+                        <div class="admin-field field-full">
+                            <label class="admin-label">Instructor Image</label>
+                            <div class="image-upload-wrap">
+                                <img id="preview_about_image" class="img-preview" src="" alt="About Image Preview" />
+                                <input type="file" class="admin-input" data-key="about_image" accept="image/*" />
+                            </div>
+                        </div>
+                        <div class="admin-field"><label class="admin-label">Instructor Name</label><input type="text"
+                                class="admin-input" data-key="about_instructor_name" /></div>
+                        <div class="admin-field field-full">
+                            <label class="admin-label">Section Heading (HTML allowed)</label>
+                            <input type="text" class="admin-input" data-key="about_heading" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Bio</div>
+                    <div class="fields-grid">
+                        <div class="admin-field field-full"><label class="admin-label">Paragraph 1</label><textarea
+                                class="admin-textarea" data-key="about_bio_1" rows="3"></textarea></div>
+                        <div class="admin-field field-full"><label class="admin-label">Paragraph 2</label><textarea
+                                class="admin-textarea" data-key="about_bio_2" rows="3"></textarea></div>
+                        <div class="admin-field field-full"><label class="admin-label">Paragraph 3</label><textarea
+                                class="admin-textarea" data-key="about_bio_3" rows="3"></textarea></div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Floating Stat Cards</div>
+                    <div class="fields-grid">
+                        <div class="admin-field"><label class="admin-label">Years Experience</label><input type="text"
+                                class="admin-input" data-key="about_exp_years" /></div>
+                        <div class="admin-field"><label class="admin-label">Students Trained</label><input type="text"
+                                class="admin-input" data-key="about_students" /></div>
+                        <div class="admin-field"><label class="admin-label">Live Modules</label><input type="text"
+                                class="admin-input" data-key="about_modules" /></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── NEWSLETTER ─────────────────────────────────── -->
+            <div class="section-panel" id="panel-newsletter">
+                <div class="panel-header">
+                    <div class="panel-title">Newsletter Section</div>
+                    <div class="panel-desc">The email subscription section at the bottom of the page.</div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Content</div>
+                    <div class="fields-grid">
+                        <div class="admin-field field-full">
+                            <label class="admin-label">Heading (HTML allowed)</label>
+                            <input type="text" class="admin-input" data-key="newsletter_heading" />
+                        </div>
+                        <div class="admin-field field-full">
+                            <label class="admin-label">Subtitle</label>
+                            <textarea class="admin-textarea" data-key="newsletter_sub" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── NAV & FOOTER ───────────────────────────────── -->
+            <div class="section-panel" id="panel-nav">
+                <div class="panel-header">
+                    <div class="panel-title">Nav &amp; Footer</div>
+                    <div class="panel-desc">Navigation bar and footer text settings.</div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Navigation</div>
+                    <div class="fields-grid">
+                        <div class="admin-field"><label class="admin-label">Logo Text</label><input type="text"
+                                class="admin-input" data-key="nav_logo_text" /></div>
+                        <div class="admin-field"><label class="admin-label">Nav Button Label</label><input type="text"
+                                class="admin-input" data-key="nav_cta_label" /></div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Footer</div>
+                    <div class="fields-grid">
+                        <div class="admin-field field-full"><label class="admin-label">Copyright Text</label><input
+                                type="text" class="admin-input" data-key="footer_copyright" /></div>
+                        <div class="admin-field"><label class="admin-label">WhatsApp Button Label</label><input
+                                type="text" class="admin-input" data-key="footer_whatsapp_label" /></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── SOCIALS ────────────────────────────────────── -->
+            <div class="section-panel" id="panel-socials">
+                <div class="panel-header">
+                    <div class="panel-title">Socials &amp; Links</div>
+                    <div class="panel-desc">Social media and contact link URLs. Leave blank to hide.</div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Social Media</div>
+                    <div class="fields-grid">
+                        <div class="admin-field field-full"><label class="admin-label">WhatsApp URL</label><input
+                                type="url" class="admin-input" data-key="social_whatsapp" /></div>
+                        <div class="admin-field"><label class="admin-label">Instagram URL</label><input type="url"
+                                class="admin-input" data-key="social_instagram"
+                                placeholder="https://instagram.com/..." /></div>
+                        <div class="admin-field"><label class="admin-label">Twitter / X URL</label><input type="url"
+                                class="admin-input" data-key="social_twitter" placeholder="https://x.com/..." /></div>
+                        <div class="admin-field"><label class="admin-label">LinkedIn URL</label><input type="url"
+                                class="admin-input" data-key="social_linkedin"
+                                placeholder="https://linkedin.com/in/..." /></div>
+                        <div class="admin-field"><label class="admin-label">Facebook URL</label><input type="url"
+                                class="admin-input" data-key="social_facebook" placeholder="https://facebook.com/..." />
+                        </div>
+                        <div class="admin-field"><label class="admin-label">YouTube URL</label><input type="url"
+                                class="admin-input" data-key="social_youtube" placeholder="https://youtube.com/..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── SEO ────────────────────────────────────────── -->
+            <div class="section-panel" id="panel-seo">
+                <div class="panel-header">
+                    <div class="panel-title">SEO / Meta Tags</div>
+                    <div class="panel-desc">Page title, description, and social sharing metadata.</div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Page Meta</div>
+                    <div class="fields-grid">
+                        <div class="admin-field field-full"><label class="admin-label">Page Title</label><input
+                                type="text" class="admin-input" data-key="meta_title" /></div>
+                        <div class="admin-field field-full"><label class="admin-label">Meta Description</label><textarea
+                                class="admin-textarea" data-key="meta_description" rows="3"></textarea></div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Open Graph (Social Sharing)</div>
+                    <div class="fields-grid">
+                        <div class="admin-field field-full"><label class="admin-label">OG Title</label><input
+                                type="text" class="admin-input" data-key="og_title" /></div>
+                        <div class="admin-field field-full"><label class="admin-label">OG Description</label><textarea
+                                class="admin-textarea" data-key="og_description" rows="3"></textarea></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── SIGN-UPS ───────────────────────────────────── -->
+            <div class="section-panel" id="panel-signups">
+                <div class="panel-header">
+                    <div class="panel-title">Masterclass Sign-ups</div>
+                    <div class="panel-desc">Everyone who clicked "Register Now" and submitted their details.</div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Registrations</div>
+                    <div class="data-table-wrap">
+                        <table class="data-table" id="signupsTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Registered</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="signupsBody">
+                                <tr>
+                                    <td colspan="5" style="color:var(--text-dim);text-align:center;padding:24px">
+                                        Loading…</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── SUBSCRIBERS ────────────────────────────────── -->
+            <div class="section-panel" id="panel-subscribers">
+                <div class="panel-header">
+                    <div class="panel-title">Newsletter Subscribers</div>
+                    <div class="panel-desc">People subscribed for free stock market updates.</div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Subscriber List</div>
+                    <div class="data-table-wrap">
+                        <table class="data-table" id="subscribersTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Subscribed</th>
+                                </tr>
+                            </thead>
+                            <tbody id="subscribersBody">
+                                <tr>
+                                    <td colspan="3" style="color:var(--text-dim);text-align:center;padding:24px">
+                                        Loading…</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── PASSWORD ───────────────────────────────────── -->
+            <div class="section-panel" id="panel-password">
+                <div class="panel-header">
+                    <div class="panel-title">Change Password</div>
+                    <div class="panel-desc">Update your admin panel password.</div>
+                </div>
+                <div class="form-card pw-section">
+                    <div class="card-title">New Password</div>
+                    <div class="fields-grid">
+                        <div class="admin-field field-full">
+                            <label class="admin-label">Current Password</label>
+                            <input type="password" class="admin-input" id="pwCurrent" />
+                        </div>
+                        <div class="admin-field field-full">
+                            <label class="admin-label">New Password</label>
+                            <input type="password" class="admin-input" id="pwNew" />
+                        </div>
+                        <div class="admin-field field-full">
+                            <label class="admin-label">Confirm New Password</label>
+                            <input type="password" class="admin-input" id="pwConfirm" />
+                        </div>
+                    </div>
+                    <button class="btn-save" id="changePasswordBtn" style="margin-top:18px;">Update Password</button>
+                </div>
+            </div>
+
+        </div><!-- /content-area -->
+    </div><!-- /dash-main -->
+
+    <!-- Toast container -->
+    <div class="toast-wrap" id="toastWrap"></div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>
