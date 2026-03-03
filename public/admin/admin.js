@@ -179,7 +179,7 @@ async function loadSignups() {
     if (!data || !body) return;
     if (ov) ov.textContent = data.count;
     if (!data.signups.length) {
-        body.innerHTML = '<tr><td colspan="5" style="color:var(--text-dim);text-align:center;padding:24px">No sign-ups yet.</td></tr>';
+        body.innerHTML = '<tr><td colspan="6" style="color:var(--text-dim);text-align:center;padding:24px">No sign-ups yet.</td></tr>';
         return;
     }
     body.innerHTML = data.signups.map(s => `
@@ -188,6 +188,7 @@ async function loadSignups() {
       <td>${escHtml(s.email)}</td>
       <td>${escHtml(s.phone || '—')}</td>
       <td>${new Date(s.registeredAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
+      <td><code style="background: rgba(255,255,255,0.05); padding: 3px 6px; border-radius: 4px; font-size: 11px;">${s.tx_ref ? escHtml(s.tx_ref) : '—'}</code></td>
       <td><span class="badge-status badge-status--${s.paymentStatus === 'paid' ? 'paid' : 'pending'}">${s.paymentStatus || 'pending'}</span></td>
     </tr>
   `).join('');
@@ -213,6 +214,39 @@ async function loadSubscribers() {
   `).join('');
 }
 
+async function exportCSV(endpoint, filename) {
+    const token = localStorage.getItem('admin_token');
+    if (!token) return;
+    try {
+        const response = await fetch(endpoint, {
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (!response.ok) throw new Error('Export failed');
+
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    } catch (err) {
+        toast('Failed to export CSV.', 'error');
+    }
+}
+
+document.getElementById('exportSignupsBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    exportCSV('/api/admin/signups/export', 'masterclass_registrations.csv');
+});
+
+document.getElementById('exportSubsBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    exportCSV('/api/admin/subscribers/export', 'newsletter_subscribers.csv');
+});
+
 function escHtml(str) {
     return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
@@ -228,6 +262,8 @@ const panelTitles = {
     newsletter: ['Newsletter', 'Email subscription section'],
     nav: ['Nav & Footer', 'Navigation and footer text'],
     socials: ['Socials & Links', 'Social media URLs — leave blank to hide'],
+    theme: ['Theme & Colors', 'Customize the main colors of the website'],
+    payments: ['Payment Integration', 'Configure Flutterwave API keys and Masterclass cost'],
     seo: ['SEO / Meta Tags', 'Page title, description, and OG tags'],
     signups: ['Sign-ups', 'Everyone who registered for the masterclass'],
     subscribers: ['Newsletter Subscribers', 'Free stock updates subscriber list'],

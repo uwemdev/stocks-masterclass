@@ -135,13 +135,22 @@
                 </svg>
                 Sign-ups
             </button>
-            <button class="sidebar-link" data-panel="subscribers">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            Newsletter List
+            </button>
+
+            <span class="nav-section-label">Config</span>
+            <button class="sidebar-link" data-panel="payments">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
+                    <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                    <line x1="2" y1="10" x2="22" y2="10"></line>
                 </svg>
-                Newsletter List
+                Payments (Flutterwave)
             </button>
 
             <span class="nav-section-label">Account</span>
@@ -606,6 +615,34 @@
                 </div>
             </div>
 
+            <!-- ── PAYMENTS (Flutterwave) ─────────────────────── -->
+            <div class="section-panel" id="panel-payments">
+                <div class="panel-header">
+                    <div class="panel-title">Payment Integration</div>
+                    <div class="panel-desc">Configure Flutterwave API keys and the Masterclass cost.</div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Pricing & Currency</div>
+                    <div class="fields-grid">
+                        <div class="admin-field"><label class="admin-label">Amount (e.g. 50000)</label><input
+                                type="number" class="admin-input" data-key="payment_amount" placeholder="50000" /></div>
+                        <div class="admin-field"><label class="admin-label">Currency (e.g. NGN, USD)</label><input
+                                type="text" class="admin-input" data-key="payment_currency" placeholder="NGN" /></div>
+                    </div>
+                </div>
+                <div class="form-card">
+                    <div class="card-title">Flutterwave API Keys</div>
+                    <div class="fields-grid" style="grid-template-columns: 1fr;">
+                        <div class="admin-field field-full"><label class="admin-label">Public Key (Test or
+                                Live)</label><input type="text" class="admin-input" data-key="flutterwave_public_key"
+                                placeholder="FLWPUBK_TEST-xxxxxxxxxx" /></div>
+                        <div class="admin-field field-full"><label class="admin-label">Secret Key (used on
+                                backend)</label><input type="password" class="admin-input"
+                                data-key="flutterwave_secret_key" placeholder="FLWSECK_TEST-xxxxxxxxxx" /></div>
+                    </div>
+                </div>
+            </div>
+
             <!-- ── SEO ────────────────────────────────────────── -->
             <div class="section-panel" id="panel-seo">
                 <div class="panel-header">
@@ -635,8 +672,24 @@
             <!-- ── SIGN-UPS ───────────────────────────────────── -->
             <div class="section-panel" id="panel-signups">
                 <div class="panel-header">
-                    <div class="panel-title">Masterclass Sign-ups</div>
-                    <div class="panel-desc">Everyone who clicked "Register Now" and submitted their details.</div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+                        <div>
+                            <div class="panel-title">Masterclass Sign-ups</div>
+                            <div class="panel-desc">Everyone who clicked "Register Now" and submitted their details.
+                            </div>
+                        </div>
+                        <a href="/api/admin/signups/export" class="btn-save" id="exportSignupsBtn" target="_blank"
+                            style="text-decoration: none; padding: 8px 16px; font-size: 13px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round"
+                                style="margin-right: 6px; vertical-align: middle;">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Export CSV
+                        </a>
+                    </div>
                 </div>
                 <div class="form-card">
                     <div class="card-title">Registrations</div>
@@ -648,6 +701,7 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Registered</th>
+                                    <th>Tx Ref</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -665,8 +719,23 @@
             <!-- ── SUBSCRIBERS ────────────────────────────────── -->
             <div class="section-panel" id="panel-subscribers">
                 <div class="panel-header">
-                    <div class="panel-title">Newsletter Subscribers</div>
-                    <div class="panel-desc">People subscribed for free stock market updates.</div>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
+                        <div>
+                            <div class="panel-title">Newsletter Subscribers</div>
+                            <div class="panel-desc">People subscribed for free stock market updates.</div>
+                        </div>
+                        <a href="/api/admin/subscribers/export" class="btn-save" id="exportSubsBtn" target="_blank"
+                            style="text-decoration: none; padding: 8px 16px; font-size: 13px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round"
+                                style="margin-right: 6px; vertical-align: middle;">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            Export CSV
+                        </a>
+                    </div>
                 </div>
                 <div class="form-card">
                     <div class="card-title">Subscriber List</div>

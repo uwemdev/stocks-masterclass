@@ -52,40 +52,66 @@ app.post('/api/newsletter', (req, res) => {
 });
 
 // ─── POST /api/signup ─────────────────────────────────────────────────────────
-app.post('/api/signup', (req, res) => {
+app.post('/api/signup', async (req, res) => {
   const { name, email, phone } = req.body;
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ success: false, message: 'A valid email address is required.' });
   }
+  // Fetch payment configuration from DB
+  let paymentConfig = { amount: '0', currency: 'NGN', pk: '' };
+  try {
+    const db = require('./db/database');
+    const rows = await db.query("SELECT key, value FROM settings WHERE key IN ('payment_amount', 'payment_currency', 'flutterwave_public_key')");
+    for (const r of rows) {
+      if (r.key === 'payment_amount') paymentConfig.amount = r.value;
+      if (r.key === 'payment_currency') paymentConfig.currency = r.value;
+      if (r.key === 'flutterwave_public_key') paymentConfig.pk = r.value;
+    }
+  } catch (e) {
+    console.error("Could not load payment settings", e);
+  }
+
+  const tx_ref = 'STK-' + Date.now() + '-' + Math.round(Math.random() * 1000000);
+
   const list = readJSON(SIGNUPS_FILE);
   if (list.find(e => e.email.toLowerCase() === email.toLowerCase())) {
     return res.status(409).json({ success: false, message: 'This email has already been registered.' });
   }
+
   list.push({
     name: (name || '').trim(),
     email: email.toLowerCase().trim(),
     phone: (phone || '').trim(),
     registeredAt: new Date().toISOString(),
-    paymentStatus: 'pending'
+    paymentStatus: 'pending',
+    tx_ref: tx_ref
   });
   writeJSON(SIGNUPS_FILE, list);
-  console.log(`[Signup] New registration: ${email}`);
-  return res.json({ success: true, message: 'Registration recorded. Redirecting to payment.' });
+  console.log(`[Signup] New registration: ${email}, tx_ref: ${tx_ref}`);
+
+  return res.json({
+    success: true,
+    message: 'Registration recorded. Redirecting to payment...',
+    paymentConfig: {
+      amount: paymentConfig.amount,
+      currency: paymentConfig.currency,
+      public_key: paymentConfig.pk,
+      tx_ref: tx_ref
+    }
+  });
 });
 
-// ─── Legacy admin read-only routes (still accessible) ────────────────────────
-app.get('/api/subscribers', (req, res) => {
-  const list = readJSON(EMAILS_FILE);
-  res.json({ count: list.length, subscribers: list });
-});
-app.get('/api/signups', (req, res) => {
-  const list = readJSON(SIGNUPS_FILE);
-  res.json({ count: list.length, signups: list });
-});
+app.use('/api/payment', require('./routes/payment'));
+
 
 // ─── Start ────────────────────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`✅ Stocks Masterclass server running at http://localhost:${PORT}`);
-  console.log(`🔐 Admin panel: http://localhost:${PORT}/admin/`);
-  console.log(`📊 Content API: http://localhost:${PORT}/api/content`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`✅ Stocks Masterclass server running at http://localhost:${PORT}`);
+    console.log(`🔐 Admin panel: http://localhost:${PORT}/admin/`);
+    console.log(`📊 Content API: http://localhost:${PORT}/api/content`);
+  });
+} else {
+  // Required by cPanel/Phusion Passenger
+  module.exports = app;
+}

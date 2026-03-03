@@ -226,16 +226,61 @@ document.addEventListener('keydown', e => {
             const data = await res.json();
 
             if (res.ok || res.status === 409) {
-                // 409 = already registered, still redirect to payment
+                // 409 = already registered, but we still allow them to pay
                 success.style.display = 'block';
-                setTimeout(() => {
-                    window.open(PAYMENT_LINK, '_blank');
+
+                // If payment details were returned from server, trigger Flutterwave Modal
+                if (data.paymentConfig && data.paymentConfig.public_key) {
+                    FlutterwaveCheckout({
+                        public_key: data.paymentConfig.public_key,
+                        tx_ref: data.paymentConfig.tx_ref,
+                        amount: data.paymentConfig.amount,
+                        currency: data.paymentConfig.currency,
+                        payment_options: "card, mobilemoneyghana, ussd",
+                        customer: {
+                            email: email,
+                            phone_number: phone,
+                            name: name,
+                        },
+                        customizations: {
+                            title: "Stocks Masterclass",
+                            description: "Payment for the upcoming Masterclass",
+                            logo: window.location.origin + "/assets/logo.png"
+                        },
+                        callback: function (payment_response) {
+                            // Close modal
+                            if (typeof FlutterwaveCheckout !== "undefined") {
+                                // The new v3 SDK doesn't always have a close method exposed easily,
+                                // but we hit our server to verify immediately anyway.
+                            }
+                            // Verify securely with our own backend
+                            fetch(`${API_BASE}/payment/verify`, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({
+                                    transaction_id: payment_response.transaction_id,
+                                    tx_ref: payment_response.tx_ref
+                                })
+                            }).then(() => {
+                                alert("Payment successful! You are fully registered for the Masterclass.");
+                                closeModal();
+                                success.style.display = 'none';
+                                form.reset();
+                            }).catch(() => {
+                                alert("Payment processed, but verification delayed. We will confirm shortly.");
+                            });
+                        },
+                        onclose: function () {
+                            submit.disabled = false;
+                            submit.innerHTML = 'Continue to Payment <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
+                        }
+                    });
+                } else {
+                    // Fallback to manual setup
+                    alert("Registration saved! The payment gateway is currently being configured by the admin.");
                     closeModal();
-                    success.style.display = 'none';
                     form.reset();
-                    submit.disabled = false;
-                    submit.innerHTML = 'Continue to Payment <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
-                }, 1800);
+                }
             } else {
                 alert(data.message || 'Something went wrong. Please try again.');
                 submit.disabled = false;
